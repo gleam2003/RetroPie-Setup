@@ -517,5 +517,5 @@ function platform_vero4k() {
 function platform_rk3399() {
     __default_cpu_flags="-mcpu=cortex-a72.cortex-a53"
     __platform_flags+=(aarch64)
-    __platform_flags+=(era kms gles gles3)
+    __platform_flags+=(kms gles gles3)
 }
