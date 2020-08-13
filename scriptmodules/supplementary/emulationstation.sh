@@ -155,7 +155,7 @@ function build_emulationstation() {
     # Temporary workaround until GLESv2 support is implemented
     isPlatform "rpi" && isPlatform "mesa" && params+=(-DGL=On)
     isPlatform "rpi" && params+=(-DRPI=On)
-    isPlatform "rk33399" && params+=(-DGLES=On)
+    isPlatform "rk3399" && params+=(-DGLES=On)
     rpSwap on 1000
     cmake . "${params[@]}"
     make clean
