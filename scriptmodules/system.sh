@@ -377,11 +377,15 @@ function get_platform() {
                 __platform="armv7-mali"
                 ;;
             *)
-                case $architecture in
-                    i686|x86_64|amd64)
-                        __platform="x86"
-                        ;;
-                esac
+                if grep -q "rk3399" /etc/armbian-release; then
+                    __platform="rk3399" 
+                else
+                    case $architecture in
+                        i686|x86_64|amd64)
+                            __platform="x86"
+                            ;;
+                    esac
+                fi
                 ;;
         esac
     fi
@@ -508,4 +512,10 @@ function platform_vero4k() {
     __default_cpu_flags="-mcpu=cortex-a7 -mfpu=neon-vfpv4"
     __default_cflags="-I/opt/vero3/include -L/opt/vero3/lib"
     __platform_flags+=(arm armv7 neon mali gles)
+}
+
+function platform_rk3399() {
+    __default_cpu_flags="-mcpu=cortex-a72.cortex-a53"
+    __platform_flags+=(aarch64)
+    __platform_flags+=(kms gles gles3)
 }
