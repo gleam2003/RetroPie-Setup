@@ -90,7 +90,7 @@ function build_mupen64plus() {
             params=()
             isPlatform "rpi1" && params+=("VFP=1" "VFP_HARD=1")
             isPlatform "videocore" || [[ "$dir" == "mupen64plus-audio-omx" ]] && params+=("VC=1")
-            if isPlatform "mesa" || isPlatform "mali"; then
+            if isPlatform "mesa" || isPlatform "mali" || isPlatform "rk3399"; then
                 params+=("USE_GLES=1")
             fi
             isPlatform "neon" && params+=("NEON=1")
@@ -117,6 +117,7 @@ function build_mupen64plus() {
     isPlatform "vero4k" && params+=("-DVERO4K=On")
     isPlatform "armv8" && params+=("-DCRC_ARMV8=On")
     isPlatform "mali" && params+=("-DVERO4K=On" "-DCRC_OPT=On" "-DEGL=On")
+    isPlatform "rk3399" && params+=("-DEGL=On")
     isPlatform "x86" && params+=("-DCRC_OPT=On")
 
     cmake "${params[@]}" ../../src/
@@ -163,7 +164,7 @@ function install_mupen64plus() {
             # optflags is needed due to the fact the core seems to rebuild 2 files and relink during install stage most likely due to a buggy makefile
             local params=()
             isPlatform "videocore" || [[ "$dir" == "mupen64plus-audio-omx" ]] && params+=("VC=1")
-            if isPlatform "mesa" || isPlatform "mali"; then
+            if isPlatform "mesa" || isPlatform "mali" || isPlatform "rk3399; then
                 params+=("USE_GLES=1")
             fi
             isPlatform "neon" && params+=("NEON=1")
