@@ -164,7 +164,7 @@ function install_mupen64plus() {
             # optflags is needed due to the fact the core seems to rebuild 2 files and relink during install stage most likely due to a buggy makefile
             local params=()
             isPlatform "videocore" || [[ "$dir" == "mupen64plus-audio-omx" ]] && params+=("VC=1")
-            if isPlatform "mesa" || isPlatform "mali" || isPlatform "rk3399; then
+            if isPlatform "mesa" || isPlatform "mali" || isPlatform "rk3399"; then
                 params+=("USE_GLES=1")
             fi
             isPlatform "neon" && params+=("NEON=1")
