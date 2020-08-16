@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+# This file is part of The RetroERA Project
+#
+# The RetroERA Project is the legal property of its developers
+#
+
 sudo apt-get update
 sudo apt-get -y install git dialog xmlstarlet joystick
 
