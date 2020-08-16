@@ -7,8 +7,13 @@ modules=(
     'setup basic_install'
     'autostart enable'
 )
+
+if grep -q "rk3399" /etc/armbian-release; then
+   platform="rk3399" 
+fi
+
 for module in "\${modules[@]}"; do
-    sudo __platform=rk3399 __nodialog=1 ./retropie_packages.sh \$module
+    sudo __platform=\$platform __nodialog=1 ./retropie_packages.sh \$module
 done
 
 rm -rf tmp
