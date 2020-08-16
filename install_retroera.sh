@@ -12,6 +12,7 @@ modules=(
 if grep -q "rk3399" /etc/armbian-release; then
    platform="rk3399" 
 fi
+cd /home/pi/RetroPie_Setup
 for module in "\${modules[@]}"; do
     sudo __platform=\$platform __nodialog=1 ./retropie_packages.sh \$module
 done
