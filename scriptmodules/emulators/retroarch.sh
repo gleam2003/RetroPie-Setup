@@ -43,6 +43,10 @@ function sources_retroarch() {
     applyPatch "$md_data/01_hotkey_hack.diff"
     applyPatch "$md_data/02_disable_search.diff"
     applyPatch "$md_data/03_shader_path_config_enable.diff"
+    
+    applyPatch "$md_data/retroarch-01-xkb-fix.patch"
+    applyPatch "$md_data/retroarch-02-graceful-shutdown-reboot-hack.patch"
+    applyPatch "$md_data/retroarch-03-libdrm-include.patch"
 }
 
 function build_retroarch() {
@@ -60,7 +64,7 @@ function build_retroarch() {
     # Temporarily block dispmanx support for fkms until upstream support is fixed
     isPlatform "dispmanx" && ! isPlatform "kms" && params+=(--enable-dispmanx --disable-opengl1)
     isPlatform "mali" && params+=(--enable-mali_fbdev)
-    isPlatform "kms" && params+=(--enable-kms --enable-egl)
+    isPlatform "kms" && params+=(--enable-kms --enable-egl --disable-x11 --disable-opengl1 --disable-vg --disable-sdl --disable-sdl2 --disable-ssl --enable-zlib --enable-translate)
     isPlatform "arm" && params+=(--enable-floathard)
     isPlatform "neon" && params+=(--enable-neon)
     isPlatform "x11" && params+=(--enable-vulkan)
@@ -82,7 +86,7 @@ function install_retroarch() {
 function update_shaders_retroarch() {
     local dir="$configdir/all/retroarch/shaders"
     local branch=""
-    isPlatform "rpi" && branch="rpi"
+    isPlatform "kms" && branch="rpi"
     # remove if not git repository for fresh checkout
     [[ ! -d "$dir/.git" ]] && rm -rf "$dir"
     gitPullOrClone "$dir" https://github.com/RetroPie/common-shaders.git "$branch"
