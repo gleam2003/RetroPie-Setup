@@ -500,7 +500,7 @@ function platform_generic-x11() {
 
 function platform_armv7-mali() {
     __default_cpu_flags="-march=armv7-a -mfpu=neon-vfpv4 -mfloat-abi=hard"
-    __platform_flags+=(arm armv7 neon mali gles)
+    __platform_flags+=(arm armv7 neon kms gles)
 }
 
 function platform_imx6() {
