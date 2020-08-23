@@ -43,10 +43,6 @@ function sources_retroarch() {
     applyPatch "$md_data/01_hotkey_hack.diff"
     applyPatch "$md_data/02_disable_search.diff"
     applyPatch "$md_data/03_shader_path_config_enable.diff"
-    
-    applyPatch "$md_data/retroarch-01-xkb-fix.patch"
-    applyPatch "$md_data/retroarch-02-graceful-shutdown-reboot-hack.patch"
-    applyPatch "$md_data/retroarch-03-libdrm-include.patch"
 }
 
 function build_retroarch() {
