@@ -28,8 +28,8 @@ function install_theme_esthemes() {
         repo="RetroPie"
     fi
     if [[ -z "$theme" ]]; then
-        theme="carbon"
-        repo="RetroPie"
+        theme="epicnoir"
+        repo="c64-dev"
     fi
     mkdir -p "/etc/emulationstation/themes"
     gitPullOrClone "/etc/emulationstation/themes/$theme" "https://github.com/$repo/es-theme-$theme.git"
