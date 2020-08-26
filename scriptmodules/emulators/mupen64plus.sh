@@ -14,7 +14,7 @@ rp_module_desc="N64 emulator MUPEN64Plus"
 rp_module_help="ROM Extensions: .z64 .n64 .v64\n\nCopy your N64 roms to $romdir/n64"
 rp_module_licence="GPL2 https://raw.githubusercontent.com/mupen64plus/mupen64plus-core/master/LICENSES"
 rp_module_section="main"
-rp_module_flags="!rk3399"
+rp_module_flags=""
 
 function depends_mupen64plus() {
     local depends=(cmake libsamplerate0-dev libspeexdsp-dev libsdl2-dev libpng-dev libfreetype6-dev fonts-freefont-ttf libboost-filesystem-dev)
@@ -117,7 +117,7 @@ function build_mupen64plus() {
     isPlatform "vero4k" && params+=("-DVERO4K=On")
     isPlatform "armv8" && params+=("-DCRC_ARMV8=On")
     isPlatform "mali" && params+=("-DVERO4K=On" "-DCRC_OPT=On" "-DEGL=On")
-    isPlatform "rk3399" && params+=("-DEGL=On")
+    isPlatform "rk3399" && params+=("-DVERO4K=On" "-DCRC_OPT=On" "-DEGL=On")
     isPlatform "x86" && params+=("-DCRC_OPT=On")
 
     cmake "${params[@]}" ../../src/
@@ -212,7 +212,7 @@ function configure_mupen64plus() {
             addEmulator 1 "${md_id}-auto" "n64" "$md_inst/bin/mupen64plus.sh AUTO %ROM%"
         fi
         addEmulator 0 "${md_id}-gles2n64" "n64" "$md_inst/bin/mupen64plus.sh mupen64plus-video-n64 %ROM%"
-    elif isPlatform "mali"; then
+    elif isPlatform "mali" || isPlatform "rk3399"; then
         addEmulator 1 "${md_id}-gles2n64" "n64" "$md_inst/bin/mupen64plus.sh mupen64plus-video-n64 %ROM%"
         addEmulator 0 "${md_id}-GLideN64" "n64" "$md_inst/bin/mupen64plus.sh mupen64plus-video-GLideN64 %ROM%"
         addEmulator 0 "${md_id}-glide64" "n64" "$md_inst/bin/mupen64plus.sh mupen64plus-video-glide64mk2 %ROM%"
