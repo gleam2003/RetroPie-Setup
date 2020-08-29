@@ -17,7 +17,7 @@ rp_module_section="opt x86=main"
 rp_module_flags="!arm"
 
 function depends_lr-beetle-psx() {
-    local depends=(libvulkan-dev libgl1-mesa-dev)
+    local depends=(libgl1-mesa-dev)
     getDepends "${depends[@]}"
 }
 
