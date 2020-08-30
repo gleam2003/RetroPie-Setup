@@ -118,6 +118,7 @@ function build_mupen64plus() {
     isPlatform "armv8" && params+=("-DCRC_ARMV8=On")
     isPlatform "mali" && params+=("-DVERO4K=On" "-DCRC_OPT=On" "-DEGL=On")
     isPlatform "rk3399" && params+=("-DVERO4K=On" "-DCRC_OPT=On" "-DEGL=On")
+    isPlatform "armv7-mali" && params+=("-DVERO4K=On" "-DCRC_OPT=On" "-DEGL=On")
     isPlatform "x86" && params+=("-DCRC_OPT=On")
 
     cmake "${params[@]}" ../../src/
@@ -164,7 +165,7 @@ function install_mupen64plus() {
             # optflags is needed due to the fact the core seems to rebuild 2 files and relink during install stage most likely due to a buggy makefile
             local params=()
             isPlatform "videocore" || [[ "$dir" == "mupen64plus-audio-omx" ]] && params+=("VC=1")
-            if isPlatform "mesa" || isPlatform "mali" || isPlatform "rk3399"; then
+            if isPlatform "mesa" || isPlatform "mali" || isPlatform "rk3399" || isPlatform "armv7-mali"; then
                 params+=("USE_GLES=1")
             fi
             isPlatform "neon" && params+=("NEON=1")
@@ -212,7 +213,7 @@ function configure_mupen64plus() {
             addEmulator 1 "${md_id}-auto" "n64" "$md_inst/bin/mupen64plus.sh AUTO %ROM%"
         fi
         addEmulator 0 "${md_id}-gles2n64" "n64" "$md_inst/bin/mupen64plus.sh mupen64plus-video-n64 %ROM%"
-    elif isPlatform "mali" || isPlatform "rk3399"; then
+    elif isPlatform "mali" || isPlatform "rk3399" || isPlatform "armv7-mali"; then
         addEmulator 1 "${md_id}-gles2n64" "n64" "$md_inst/bin/mupen64plus.sh mupen64plus-video-n64 %ROM%"
         addEmulator 0 "${md_id}-GLideN64" "n64" "$md_inst/bin/mupen64plus.sh mupen64plus-video-GLideN64 %ROM%"
         addEmulator 0 "${md_id}-glide64" "n64" "$md_inst/bin/mupen64plus.sh mupen64plus-video-glide64mk2 %ROM%"
