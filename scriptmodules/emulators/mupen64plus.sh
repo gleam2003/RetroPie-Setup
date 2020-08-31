@@ -90,7 +90,7 @@ function build_mupen64plus() {
             params=()
             isPlatform "rpi1" && params+=("VFP=1" "VFP_HARD=1")
             isPlatform "videocore" || [[ "$dir" == "mupen64plus-audio-omx" ]] && params+=("VC=1")
-            if isPlatform "mesa" || isPlatform "mali" || isPlatform "rk3399"; then
+            if isPlatform "mesa" || isPlatform "mali" || isPlatform "rk3399" || isPlatform "armv7-mali"; then
                 params+=("USE_GLES=1")
             fi
             isPlatform "neon" && params+=("NEON=1")
