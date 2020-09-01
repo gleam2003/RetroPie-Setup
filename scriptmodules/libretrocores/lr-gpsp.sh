@@ -14,7 +14,7 @@ rp_module_desc="GBA emu - gpSP port for libretro"
 rp_module_help="ROM Extensions: .gba .zip\n\nCopy your Game Boy Advance roms to $romdir/gba\n\nCopy the required BIOS file gba_bios.bin to $biosdir"
 rp_module_licence="GPL2 https://raw.githubusercontent.com/libretro/gpsp/master/COPYING"
 rp_module_section="opt arm=main"
-rp_module_flags="!all arm"
+rp_module_flags="!all arm !armv7-mali"
 
 function depends_lr-gpsp() {
     getDepends gcc-6
