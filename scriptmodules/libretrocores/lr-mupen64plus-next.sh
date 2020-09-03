@@ -41,7 +41,7 @@ function build_lr-mupen64plus-next() {
         elif isPlatform "rk3399"; then
             params+=(platform="RK3399")
         elif isPlatform "armv7-mali"; then
-            params+=(platform="unix armv neon hardfloat")
+            params+=(platform="odroid")
         fi
         isPlatform "neon" && params+=(HAVE_NEON=1)
     fi
