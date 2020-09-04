@@ -60,7 +60,7 @@ function build_lr-mupen64plus() {
     elif isPlatform "mali"; then
         params+=(platform="odroid")
     elif isPlatform "armv7-mali"; then
-        params+=(platform="classic_armv7_a7")
+        params+=(platform="orangepi")
     else
         isPlatform "arm" && params+=(WITH_DYNAREC=arm)
         isPlatform "neon" && params+=(HAVE_NEON=1)
