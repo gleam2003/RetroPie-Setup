@@ -26,7 +26,7 @@ function depends_lr-mupen64plus-next() {
 }
 
 function sources_lr-mupen64plus-next() {
-    gitPullOrClone "$md_build" https://github.com/libretro/mupen64plus-libretro-nx.git develop
+    gitPullOrClone "$md_build" https://github.com/gleam2003/mupen64plus-libretro-nx.git develop
 }
 
 function build_lr-mupen64plus-next() {
@@ -41,7 +41,7 @@ function build_lr-mupen64plus-next() {
         elif isPlatform "rk3399"; then
             params+=(platform="RK3399")
         elif isPlatform "armv7-mali"; then
-            params+=(platform="odroid")
+            params+=(platform="orangepi")
         fi
         isPlatform "neon" && params+=(HAVE_NEON=1)
     fi
