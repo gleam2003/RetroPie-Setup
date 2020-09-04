@@ -499,7 +499,7 @@ function platform_generic-x11() {
 }
 
 function platform_armv7-mali() {
-    __default_cpu_flags="-mcpu=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=hard"
+    __default_cpu_flags="-g -O3 -march=armv7ve -mtune=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=hard"
     __platform_flags+=(arm armv7 neon kms gles)
 }
 
